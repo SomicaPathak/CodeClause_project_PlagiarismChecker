@@ -5,26 +5,30 @@ from difflib import SequenceMatcher
 def plagcheck():
     first1=firstfile.get()
     first2=secfile.get()
+    #opening and writing the file content
     fil1=open('file1.txt','w')
     fil2=open('file2.txt','w')
     fil1.write(first1)
     fil2.write(first2)
     fil1.close()
     fil2.close()
+    #reading file
     fil1=open('file1.txt','r')
     fil2=open('file2.txt','r')
     u=fil1.read()
     v=fil2.read()
     similarity= SequenceMatcher(None,u,v).ratio()
+    #print on display
     output.set(similarity*100)
     fil1.close()
     fil2.close()
 
-
+#creating Window with perticular geometry and title
 window=Tk()
 window.geometry("600x500")
 window.title("Plag Detector")
 window.config(bg="pink")
+#Adding Label
 Label(window,text="Plag detector",font="impack 15 bold",bg="purple",fg="white").pack(fill="x")
 
 file1_txt=Label(text="File 1 content:")
@@ -33,8 +37,10 @@ file1_txt.place(x=15,y=70)
 file2_txt.place(x=400,y=70)
 firstfile=StringVar()
 secfile=StringVar()
+#entry box to enter texts
 first_file_entry=Entry(textvariable=firstfile,width=30)
 sec_file_entry=Entry(textvariable=secfile,width=30)
+#placing entry boxes at particular location
 first_file_entry.place(x=15,y=90)
 sec_file_entry.place(x=400,y=90)
 
